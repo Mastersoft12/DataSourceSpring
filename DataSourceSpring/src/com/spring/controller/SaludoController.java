@@ -14,25 +14,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.spring.bean.DataSourceSP;
 import com.spring.bean.IDataSourceSp;
+import com.spring.bean.UsuarioCentroCostoDao;
+import com.spring.model.UsuarioCentroCosto;
 
 @Controller
 public class SaludoController {
 	
 	
-    @Autowired
-    @Qualifier("dataSourceSP")
-    IDataSourceSp dataSource;
+    @Autowired()
+    UsuarioCentroCostoDao usuarioCentroCostoDao;
 	
 	@RequestMapping( value =  "/", method=RequestMethod.GET)
 	public String home(Model model){
-		 
-			  try {
-				dataSource.dataSource().getConnection();
-			} catch (IllegalArgumentException | NamingException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
+		 UsuarioCentroCosto usuario = null;
+		 try {
+			usuario = 	usuarioCentroCostoDao.buscarUsuarioCentroCostoPorUsuario("FRALLOPE");
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}			
 			return "saludo";
 	}
 
