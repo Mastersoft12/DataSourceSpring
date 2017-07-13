@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.spring.bean.ITipoDeCartera;
 import com.spring.bean.IusuarioCosto;
 import com.spring.model.UsuarioCentroCosto;
 
@@ -22,12 +23,17 @@ public class UsuarioCentroCostoController {
 	@Autowired
     @Qualifier("usuarioCentroCostoDao")
 	IusuarioCosto usuarioCentroCostoDao;
+	
+	@Autowired
+    @Qualifier("tipoDeCarteraDao")
+	ITipoDeCartera tipoDeCarteraDao;
 
     private List<UsuarioCentroCosto> listUsuarioCosto;
 	
 	@RequestMapping( value = "/usuarioCosto", method=RequestMethod.GET)
 	public String buscarUsuarioCosto(Model model){
 		model.addAttribute(new UsuarioCentroCosto());
+		tipoDeCarteraDao.ObtenerTipoDeCartera("P");
 		return "BuscarUsuarioCosto";
 	}
 	

@@ -10,7 +10,7 @@
 	<h1>Usuario Centro de Costos</h1>
 	<c:forEach items="${UsuarioCostoList}" var="usuario">
 
-        ${usuario.centroCosto} : ${usuario.habilitadi} : ${usuario.usuarioCreador} : ${usuario.usuarioRed} <br />
+        ${usuario.centroCosto} : ${usuario.habilitadi} : ${usuario.fechaCreacion} : ${usuario.usuarioCreador} : ${usuario.usuarioRed} <br />
 
 	</c:forEach>
 

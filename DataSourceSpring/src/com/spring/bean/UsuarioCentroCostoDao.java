@@ -37,6 +37,7 @@ public class UsuarioCentroCostoDao implements IusuarioCosto {
 			if(rs.next()){
 				usuario.setCentroCosto(rs.getString("CENTRO_DE_COSTO"));
 				usuario.setHabilitadi(rs.getString("HABILITADO"));
+				usuario.setFechaCreacion(rs.getDate("FECHA_DE_CREACION"));
 				usuario.setUsuarioCreador(rs.getString("USUARIO_CREADOR"));
 				usuario.setUsuarioRed(rs.getString("USUARIO_DE_RED"));
 			}
