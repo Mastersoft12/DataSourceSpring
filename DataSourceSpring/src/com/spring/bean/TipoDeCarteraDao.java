@@ -17,16 +17,16 @@ public class TipoDeCarteraDao implements ITipoDeCartera {
     @Qualifier("dataSourceSP")
     IDataSourceSp dataSource;
 	
-/*	@Autowired
-	private JdbcTemplate jdbcTemplateObject;*/
+	@Autowired
+    @Qualifier("jdbcTemplateConexion")
+	private JdbcTemplateConexion jdbcTemplateConexion;
 
 	public TipoDeCartera ObtenerTipoDeCartera(String codigo){
 		String sql = "SELECT * FROM TIPOS_DE_CARTERA WHERE CODIGO = ?";
 		TipoDeCartera  tipoDeCartera = null;
 		JdbcTemplate jdbcTemplateObject;
 		try {
-			jdbcTemplateObject = new JdbcTemplate(dataSource.dataSource());
-			tipoDeCartera = jdbcTemplateObject.queryForObject(sql, new Object[]{codigo}, new TipoDeCarteraMapper());
+			tipoDeCartera = jdbcTemplateConexion.obtenerJdbcTemplate().queryForObject(sql, new Object[]{codigo}, new TipoDeCarteraMapper());
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
 		} catch (NamingException e) {
